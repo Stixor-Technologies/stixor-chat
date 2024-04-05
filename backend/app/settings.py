@@ -1,8 +1,8 @@
 import os
 from typing import Dict
 from llama_index.core.settings import Settings
-from llama_index.llms.openai import OpenAI
-from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.llms.together import TogetherLLM
+from llama_index.core.embeddings import resolve_embed_model
 
 
 def llm_config_from_env() -> Dict:
@@ -32,10 +32,18 @@ def embedding_config_from_env() -> Dict:
 
 
 def init_settings():
-    llm_configs = llm_config_from_env()
-    embedding_configs = embedding_config_from_env()
+    # llm_configs = llm_config_from_env()
+    # embedding_configs = embedding_config_from_env()
 
-    Settings.llm = OpenAI(**llm_configs)
-    Settings.embed_model = OpenAIEmbedding(**embedding_configs)
+    llm = TogetherLLM(
+        model="mistralai/Mistral-7B-Instruct-v0.2",
+        api_key=os.getenv("TOGETHER_API_KEY"),
+    )
+    embed_model = resolve_embed_model("local:BAAI/bge-small-en-v1.5")
+
+    # Settings.llm = OpenAI(**llm_configs)
+    # Settings.embed_model = OpenAIEmbedding(**embedding_configs)
+    Settings.llm = llm
+    Settings.embed_model = embed_model
     Settings.chunk_size = int(os.getenv("CHUNK_SIZE", "1024"))
     Settings.chunk_overlap = int(os.getenv("CHUNK_OVERLAP", "20"))
