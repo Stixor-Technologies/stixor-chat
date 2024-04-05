@@ -4,6 +4,7 @@ import FileUploader from "../file-uploader";
 import { Input } from "../input";
 import UploadImagePreview from "../upload-image-preview";
 import { ChatHandler } from "./chat.interface";
+import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 
 export default function ChatInput(
   props: Pick<
@@ -16,7 +17,7 @@ export default function ChatInput(
     | "handleInputChange"
   > & {
     multiModal?: boolean;
-  },
+  }
 ) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
@@ -57,7 +58,7 @@ export default function ChatInput(
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-xl bg-white p-4 shadow-xl space-y-4"
+      className="rounded-full bg-white p-4 shadow-xl space-y-4 w-screen md:w-[65vw] fixed left-1/2 -translate-x-1/2 bottom-10"
     >
       {imageUrl && (
         <UploadImagePreview url={imageUrl} onRemove={onRemovePreviewImage} />
@@ -71,12 +72,12 @@ export default function ChatInput(
           value={props.input}
           onChange={props.handleInputChange}
         />
-        <FileUploader
+        {/* <FileUploader
           onFileUpload={handleUploadFile}
           onFileError={props.onFileError}
-        />
+        /> */}
         <Button type="submit" disabled={props.isLoading}>
-          Send message
+          <ArrowTopRightIcon />
         </Button>
       </div>
     </form>
