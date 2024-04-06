@@ -56,30 +56,32 @@ export default function ChatInput(
   };
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="rounded-full bg-white p-4 shadow-xl space-y-4 w-screen md:w-[65vw] fixed left-1/2 -translate-x-1/2 bottom-10"
-    >
-      {imageUrl && (
-        <UploadImagePreview url={imageUrl} onRemove={onRemovePreviewImage} />
-      )}
-      <div className="flex w-full items-start justify-between gap-4 ">
-        <Input
-          autoFocus
-          name="message"
-          placeholder="Type a message"
-          className="flex-1"
-          value={props.input}
-          onChange={props.handleInputChange}
-        />
-        {/* <FileUploader
+    <div className="bg-secondary-foreground w-screen h-0 fixed bottom-0">
+      <form
+        onSubmit={onSubmit}
+        className="rounded-full bg-white p-4 shadow-xl space-y-4 w-screen md:w-2/3 fixed left-1/2 -translate-x-1/2 bottom-10"
+      >
+        {imageUrl && (
+          <UploadImagePreview url={imageUrl} onRemove={onRemovePreviewImage} />
+        )}
+        <div className="flex w-full items-start justify-between gap-4 ">
+          <Input
+            autoFocus
+            name="message"
+            placeholder="Type a message"
+            className="flex-1"
+            value={props.input}
+            onChange={props.handleInputChange}
+          />
+          {/* <FileUploader
           onFileUpload={handleUploadFile}
           onFileError={props.onFileError}
         /> */}
-        <Button type="submit" disabled={props.isLoading}>
-          <ArrowTopRightIcon />
-        </Button>
-      </div>
-    </form>
+          <Button type="submit" size="icon" disabled={props.isLoading}>
+            <ArrowTopRightIcon />
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }

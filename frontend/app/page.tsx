@@ -3,9 +3,8 @@ import ChatSection from "./components/chat-section";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center bg-[#F8F8F8] min-h-screen">
-      {/* <Header /> */}
+    <div className="relative flex h-screen overflow-hidden">
       <ChatSection />
-    </main>
+    </div>
   );
 }

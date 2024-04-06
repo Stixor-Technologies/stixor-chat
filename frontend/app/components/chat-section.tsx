@@ -1,9 +1,10 @@
 "use client";
 
 import { useChat } from "ai/react";
-import { useMemo } from "react";
+import { RefObject, useMemo } from "react";
 import { insertDataIntoMessages } from "./transform";
 import { ChatInput, ChatMessages } from "./ui/chat";
+import { useScrollAnchor } from "../hooks/use-scroll-anchor";
 
 export default function ChatSection() {
   const {
@@ -26,14 +27,23 @@ export default function ChatSection() {
     return insertDataIntoMessages(messages, data);
   }, [messages, data]);
 
+  const { messagesRef, scrollRef, visibilityRef, isAtBottom, scrollToBottom } =
+    useScrollAnchor();
+
   return (
-    <div className="w-full">
-      <ChatMessages
-        messages={transformedMessages}
-        isLoading={isLoading}
-        reload={reload}
-        stop={stop}
-      />
+    <div
+      className="w-full overflow-auto pl-0 peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]"
+      ref={scrollRef}
+    >
+      <div className="pb-40 pt-4 md:pt-10" ref={messagesRef}>
+        <ChatMessages
+          messages={transformedMessages}
+          isLoading={isLoading}
+          reload={reload}
+          stop={stop}
+        />
+        <div className="h-px w-full" ref={visibilityRef} />
+      </div>
       <ChatInput
         input={input}
         handleSubmit={handleSubmit}
