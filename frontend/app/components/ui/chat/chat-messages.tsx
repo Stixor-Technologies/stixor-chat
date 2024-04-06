@@ -33,14 +33,16 @@ export default function ChatMessages(
           </div>
         )}
       </div>
-      {/* <div className="flex items-end justify-end w-2/3 py-4">
-        <ChatActions
-          reload={props.reload}
-          stop={props.stop}
-          showReload={showReload}
-          showStop={showStop}
-        />
-      </div> */}
+      <div className="fixed bottom-28 justify-start py-4 w-2/3 pointer-events-none">
+        <div className="flex justify-end pr-4">
+          <ChatActions
+            reload={props.reload}
+            stop={props.stop}
+            showReload={showReload}
+            showStop={showStop}
+          />
+        </div>
+      </div>
     </div>
   );
 }

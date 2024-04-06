@@ -64,7 +64,7 @@ export const useScrollAnchor = () => {
           });
         },
         {
-          rootMargin: "0px 0px -130px 0px",
+          rootMargin: "0px 0px -160px 0px",
         }
       );
 
