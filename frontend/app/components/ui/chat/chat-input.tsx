@@ -5,6 +5,7 @@ import { Input } from "../input";
 import UploadImagePreview from "../upload-image-preview";
 import { ChatHandler } from "./chat.interface";
 import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import { ButtonScrollToBottom } from "../../button-scroll-to-bottom";
 
 export default function ChatInput(
   props: Pick<
@@ -17,6 +18,8 @@ export default function ChatInput(
     | "handleInputChange"
   > & {
     multiModal?: boolean;
+    isAtBottom: boolean;
+    scrollToBottom: () => void;
   }
 ) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -56,10 +59,14 @@ export default function ChatInput(
   };
 
   return (
-    <div className="bg-secondary-foreground w-screen h-0 fixed bottom-0">
+    <div className="bg-white w-screen h-0 fixed bottom-0">
+      <ButtonScrollToBottom
+        isAtBottom={props.isAtBottom}
+        scrollToBottom={props.scrollToBottom}
+      />
       <form
         onSubmit={onSubmit}
-        className="rounded-full bg-white p-4 shadow-xl space-y-4 w-screen md:w-2/3 fixed left-1/2 -translate-x-1/2 bottom-10"
+        className="rounded-full bg-white p-4 shadow-xl space-y-4 w-screen md:w-2/3 fixed left-1/2 -translate-x-1/2 bottom-2 md:bottom-10"
       >
         {imageUrl && (
           <UploadImagePreview url={imageUrl} onRemove={onRemovePreviewImage} />

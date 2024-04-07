@@ -37,9 +37,9 @@ You can check out [the LlamaIndexTS GitHub repository](https://github.com/run-ll
 
 ## TODOs
 
-- [ ] Add button to scroll to bottom.
+- [x] Add button to scroll to bottom.
 - [x] Add ChatAction button (Regenerate, Stop, etc).
-- [ ] Add header with logo and title.
-- [ ] Replace icon with Stixor Logo.
-- [ ] Make mobile responsive.
+- [x] Add header with logo and title.
+- [x] Replace icon with Stixor Logo.
+- [x] Make mobile responsive.
 - [ ] Add placeholder on empty chat.

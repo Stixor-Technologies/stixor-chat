@@ -35,7 +35,7 @@ export default function ChatSection() {
       className="w-full overflow-auto pl-0 peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]"
       ref={scrollRef}
     >
-      <div className="pb-40 pt-4 md:pt-10" ref={messagesRef}>
+      <div className="pb-40 pt-16 md:pt-20" ref={messagesRef}>
         <ChatMessages
           messages={transformedMessages}
           isLoading={isLoading}
@@ -50,6 +50,8 @@ export default function ChatSection() {
         handleInputChange={handleInputChange}
         isLoading={isLoading}
         multiModal={process.env.NEXT_PUBLIC_MODEL === "gpt-4-vision-preview"}
+        isAtBottom={isAtBottom}
+        scrollToBottom={scrollToBottom}
       />
     </div>
   );

@@ -121,6 +121,10 @@ const CodeBlock: FC<Props> = memo(({ language, value }) => {
           background: "transparent",
           padding: "1.5rem 1rem",
           borderRadius: "0.5rem",
+          margin: 0,
+        }}
+        lineNumberStyle={{
+          userSelect: "none",
         }}
         codeTagProps={{
           style: {

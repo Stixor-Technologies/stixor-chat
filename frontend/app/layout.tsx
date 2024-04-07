@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import Header from "./components/header";
 
 export const metadata: Metadata = {
   title: "Stixor Chatbot",
@@ -17,9 +17,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={GeistSans.className}>
         <div className="flex flex-col min-h-screen">
-          <main className="flex flex-col flex-1 bg-secondary-foreground">
-            {children}
-          </main>
+          <Header />
+          <main className="flex flex-col flex-1 bg-background">{children}</main>
         </div>
       </body>
     </html>
