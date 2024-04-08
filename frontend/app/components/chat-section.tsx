@@ -5,6 +5,7 @@ import { RefObject, useMemo } from "react";
 import { insertDataIntoMessages } from "./transform";
 import { ChatInput, ChatMessages } from "./ui/chat";
 import { useScrollAnchor } from "../hooks/use-scroll-anchor";
+import { EmptyScreen } from "./empty-screen";
 
 export default function ChatSection() {
   const {
@@ -16,6 +17,7 @@ export default function ChatSection() {
     reload,
     stop,
     data,
+    append,
   } = useChat({
     api: process.env.NEXT_PUBLIC_CHAT_API,
     headers: {
@@ -36,15 +38,20 @@ export default function ChatSection() {
       ref={scrollRef}
     >
       <div className="pb-40 pt-16 md:pt-20" ref={messagesRef}>
-        <ChatMessages
-          messages={transformedMessages}
-          isLoading={isLoading}
-          reload={reload}
-          stop={stop}
-        />
+        {transformedMessages.length > 0 ? (
+          <ChatMessages
+            messages={transformedMessages}
+            isLoading={isLoading}
+            reload={reload}
+            stop={stop}
+          />
+        ) : (
+          <EmptyScreen />
+        )}
         <div className="h-px w-full" ref={visibilityRef} />
       </div>
       <ChatInput
+        messages={transformedMessages}
         input={input}
         handleSubmit={handleSubmit}
         handleInputChange={handleInputChange}
@@ -52,6 +59,7 @@ export default function ChatSection() {
         multiModal={process.env.NEXT_PUBLIC_MODEL === "gpt-4-vision-preview"}
         isAtBottom={isAtBottom}
         scrollToBottom={scrollToBottom}
+        append={append}
       />
     </div>
   );

@@ -23,7 +23,7 @@ export default function ChatMessages(
 
   return (
     <div className="flex justify-center w-full h-full flex-col items-center bg-background">
-      <div className="flex h-full flex-col gap-5 divide-y w-[90%] md:w-2/3">
+      <div className="flex h-full flex-col gap-5 divide-y w-[90%] md:w-2/3 max-w-3xl">
         {props.messages.map((m) => (
           <ChatMessage key={m.id} {...m} />
         ))}
@@ -33,7 +33,7 @@ export default function ChatMessages(
           </div>
         )}
       </div>
-      <div className="fixed bottom-20 md:bottom-28 justify-start py-4 w-2/3 pointer-events-none">
+      <div className="fixed bottom-20 md:bottom-28 justify-start py-4 w-2/3 max-w-3xl pointer-events-none">
         <div className="flex justify-center md:justify-end md:pr-4">
           <ChatActions
             reload={props.reload}

@@ -42,4 +42,4 @@ You can check out [the LlamaIndexTS GitHub repository](https://github.com/run-ll
 - [x] Add header with logo and title.
 - [x] Replace icon with Stixor Logo.
 - [x] Make mobile responsive.
-- [ ] Add placeholder on empty chat.
+- [x] Add placeholder on empty chat.

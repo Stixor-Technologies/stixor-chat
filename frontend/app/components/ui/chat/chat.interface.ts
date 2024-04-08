@@ -1,4 +1,4 @@
-import { Message } from "ai";
+import { ChatRequestOptions, CreateMessage, Message } from "ai";
 
 export interface ChatHandler {
   messages: Message[];
@@ -15,4 +15,8 @@ export interface ChatHandler {
   stop?: () => void;
   onFileUpload?: (file: File) => Promise<void>;
   onFileError?: (errMsg: string) => void;
+  append: (
+    message: Message | CreateMessage,
+    chatRequestOptions?: ChatRequestOptions
+  ) => Promise<string | null | undefined>;
 }
