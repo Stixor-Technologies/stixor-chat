@@ -10,7 +10,7 @@ export default function ChatActions(
   }
 ) {
   return (
-    <div className="space-x-4 pointer-events-auto">
+    <div className="pointer-events-auto space-x-4">
       {props.showStop && (
         <Button variant="outline" size="sm" onClick={props.stop}>
           <PauseCircle className="mr-2 h-4 w-4" />

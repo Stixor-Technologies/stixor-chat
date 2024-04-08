@@ -18,7 +18,7 @@ export function ButtonScrollToBottom({
     <Button
       variant="outline"
       size="icon"
-      className={`fixed h-10 right-4 bottom-24 z-10 transition-all duration-300 sm:right-8 md:bottom-32
+      className={`fixed bottom-24 right-4 z-10 h-10 transition-all duration-300 sm:right-8 md:bottom-32
       ${isAtBottom ? "opacity-0" : "opacity-100"}`}
       onClick={() => scrollToBottom()}
       {...props}

@@ -22,18 +22,18 @@ export default function ChatMessages(
   const isPending = props.isLoading && !isLastMessageFromAssistant;
 
   return (
-    <div className="flex justify-center w-full h-full flex-col items-center bg-background">
-      <div className="flex h-full flex-col gap-5 divide-y w-[90%] md:w-2/3 max-w-3xl">
+    <div className="flex h-full w-full flex-col items-center justify-center bg-background">
+      <div className="flex h-full w-[90%] max-w-3xl flex-col gap-5 divide-y md:w-2/3">
         {props.messages.map((m) => (
           <ChatMessage key={m.id} {...m} />
         ))}
         {isPending && (
-          <div className="flex justify-center items-center pt-10">
+          <div className="flex items-center justify-center pt-10">
             <Loader2 className="h-4 w-4 animate-spin" />
           </div>
         )}
       </div>
-      <div className="fixed bottom-20 md:bottom-28 justify-start py-4 w-2/3 max-w-3xl pointer-events-none">
+      <div className="pointer-events-none fixed bottom-20 w-2/3 max-w-3xl justify-start py-4 md:bottom-28">
         <div className="flex justify-center md:justify-end md:pr-4">
           <ChatActions
             reload={props.reload}

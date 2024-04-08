@@ -4,8 +4,8 @@ import { Button } from "./ui/button";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 z-50 flex items-center justify-between w-full h-16 px-4 border-b shrink-0 bg-background backdrop-blur-xl">
-      <div className="flex h-full items-center justify-between w-full">
+    <header className="fixed top-0 z-50 flex h-16 w-full shrink-0 items-center justify-between border-b bg-background px-4 backdrop-blur-xl">
+      <div className="flex h-full w-full items-center justify-between">
         <Image
           src={StixorLogo}
           alt="Stixor Logo"

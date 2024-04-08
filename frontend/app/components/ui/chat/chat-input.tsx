@@ -29,7 +29,7 @@ export default function ChatInput(
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (imageUrl) {
       props.handleSubmit(e, {
-        data: { imageUrl: imageUrl },
+        data: { imageUrl: imageUrl }
       });
       setImageUrl(null);
       return;
@@ -64,40 +64,40 @@ export default function ChatInput(
     {
       heading: "What are the",
       subheading: "Bonus policies at Stixor?",
-      message: `What are the bonus policies at Stixor?`,
+      message: `What are the bonus policies at Stixor?`
     },
     {
       heading: "What was the",
       subheading: "CSD project about?",
-      message: "What was the CSD project about?",
+      message: "What was the CSD project about?"
     },
     {
       heading: "What are the",
       subheading: "development tools we use at Stixor?",
-      message: `What are the development tools we use at Stixor?`,
+      message: `What are the development tools we use at Stixor?`
     },
     {
       heading: "What is the",
       subheading: `testing and quality process at Stixor?`,
-      message: `What is the testing and quality process at Stixor?`,
-    },
+      message: `What is the testing and quality process at Stixor?`
+    }
   ];
 
   return (
-    <div className="bg-white w-screen h-0 fixed bottom-0 max-w-3xl">
+    <div className="fixed bottom-0 h-0 w-screen max-w-3xl bg-white">
       <ButtonScrollToBottom
         isAtBottom={props.isAtBottom}
         scrollToBottom={props.scrollToBottom}
       />
 
-      <div className="fixed flex justify-center w-full">
-        <div className="fixed w-screen bottom-20 md:bottom-28 flex justify-center">
-          <div className="mb-4 grid grid-cols-2 gap-2 px-4 max-w-3xl w-full md:w-2/3">
+      <div className="fixed flex w-full justify-center">
+        <div className="fixed bottom-20 flex w-screen justify-center md:bottom-28">
+          <div className="mb-4 grid w-full max-w-3xl grid-cols-2 gap-2 px-4 md:w-2/3">
             {props.messages.length === 0 &&
               exampleMessages.map((example, index) => (
                 <div
                   key={example.heading}
-                  className={`cursor-pointer ease-in-out transition-all duration-300 rounded-lg border bg-white p-4 hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900 ${
+                  className={`cursor-pointer rounded-lg border bg-white p-4 transition-all duration-300 ease-in-out hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900 ${
                     index > 1 && "hidden md:block"
                   }`}
                   onClick={() => {
@@ -116,8 +116,8 @@ export default function ChatInput(
 
       <form
         onSubmit={onSubmit}
-        className="rounded-full bg-white p-4 shadow-xl space-y-4 w-screen md:w-2/3 fixed left-1/2 -translate-x-1/2 bottom-2 md:bottom-10 
-        max-w-3xl"
+        className="fixed bottom-2 left-1/2 w-screen max-w-3xl -translate-x-1/2 space-y-4 rounded-full bg-white p-4 shadow-xl md:bottom-10 
+        md:w-2/3"
       >
         {imageUrl && (
           <UploadImagePreview url={imageUrl} onRemove={onRemovePreviewImage} />
