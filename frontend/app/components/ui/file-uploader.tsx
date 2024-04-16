@@ -23,7 +23,7 @@ const DEFAULT_FILE_SIZE_LIMIT = 1024 * 1024 * 50; // 50 MB
 export default function FileUploader({
   config,
   onFileUpload,
-  onFileError,
+  onFileError
 }: FileUploaderProps) {
   const [uploading, setUploading] = useState(false);
 
@@ -33,7 +33,7 @@ export default function FileUploader({
   const defaultCheckExtension = (extension: string) => {
     if (allowedExtensions && !allowedExtensions.includes(extension)) {
       return `Invalid file type. Please select a file with one of these formats: ${allowedExtensions!.join(
-        ",",
+        ","
       )}`;
     }
     return null;
@@ -69,7 +69,7 @@ export default function FileUploader({
 
     if (isFileSizeExceeded(file)) {
       return onFileUploadError(
-        `File size exceeded. Limit is ${fileSizeLimit / 1024 / 1024} MB`,
+        `File size exceeded. Limit is ${fileSizeLimit / 1024 / 1024} MB`
       );
     }
 
@@ -91,13 +91,13 @@ export default function FileUploader({
         className={cn(
           buttonVariants({ variant: "secondary", size: "icon" }),
           "cursor-pointer",
-          uploading && "opacity-50",
+          uploading && "opacity-50"
         )}
       >
         {uploading ? (
           <Loader2 className="h-4 w-4 animate-spin" />
         ) : (
-          <Paperclip className="-rotate-45 w-4 h-4" />
+          <Paperclip className="h-4 w-4 -rotate-45" />
         )}
       </label>
     </div>

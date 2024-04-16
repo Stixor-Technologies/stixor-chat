@@ -8,6 +8,14 @@ Second, run the development server of the frontend as described in the [frontend
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+To start the backend service, you can use docker-compose:
+
+```bash
+docker-compose up
+```
+
+You will need to populate the .env file with the variables according to the provided .env.example files.
+
 ## Learn More
 
 To learn more about LlamaIndex, take a look at the following resources:

@@ -4,26 +4,26 @@ import { cn } from "./lib/utils";
 
 export default function UploadImagePreview({
   url,
-  onRemove,
+  onRemove
 }: {
   url: string;
   onRemove: () => void;
 }) {
   return (
-    <div className="relative w-20 h-20 group">
+    <div className="group relative h-20 w-20">
       <Image
         src={url}
         alt="Uploaded image"
         fill
-        className="object-cover w-full h-full rounded-xl hover:brightness-75"
+        className="h-full w-full rounded-xl object-cover hover:brightness-75"
       />
       <div
         className={cn(
-          "absolute -top-2 -right-2 w-6 h-6 z-10 bg-gray-500 text-white rounded-full hidden group-hover:block",
+          "absolute -right-2 -top-2 z-10 hidden h-6 w-6 rounded-full bg-gray-500 text-white group-hover:block"
         )}
       >
         <XCircleIcon
-          className="w-6 h-6 bg-gray-500 text-white rounded-full"
+          className="h-6 w-6 rounded-full bg-gray-500 text-white"
           onClick={onRemove}
         />
       </div>

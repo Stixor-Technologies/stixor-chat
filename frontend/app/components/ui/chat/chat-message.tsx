@@ -19,7 +19,7 @@ function ChatMessageData({ messageData }: { messageData: JSONValue }) {
   const { image_url, type } = messageData as unknown as ChatMessageImageData;
   if (type === "image_url") {
     return (
-      <div className="rounded-md max-w-[200px] shadow-md">
+      <div className="max-w-[200px] rounded-md shadow-md">
         <Image
           src={image_url.url}
           width={0}
@@ -37,10 +37,10 @@ function ChatMessageData({ messageData }: { messageData: JSONValue }) {
 export default function ChatMessage(chatMessage: Message) {
   const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 });
   return (
-    <div className="flex items-start gap-4 pr-5 pt-5">
+    <div className="flex items-start gap-4 pt-5 md:pr-5">
       <ChatAvatar role={chatMessage.role} />
-      <div className="group flex flex-1 justify-between gap-2">
-        <div className="flex-1 space-y-4">
+      <div className="group flex flex-1 items-center justify-between gap-2">
+        <div className="flex-1 space-y-4 overflow-hidden">
           {chatMessage.data && (
             <ChatMessageData messageData={chatMessage.data} />
           )}

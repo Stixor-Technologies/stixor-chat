@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Copy, Download } from "lucide-react";
+import { CheckIcon, CopyIcon, DownloadIcon } from "@radix-ui/react-icons";
 import { FC, memo } from "react";
 import { Prism, SyntaxHighlighterProps } from "react-syntax-highlighter";
 import { coldarkDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
@@ -43,7 +43,7 @@ export const programmingLanguages: languageMap = {
   shell: ".sh",
   sql: ".sql",
   html: ".html",
-  css: ".css",
+  css: ".css"
   // add more file extensions here, make sure the key is same as language prop in CodeBlock.tsx component
 };
 
@@ -66,7 +66,7 @@ const CodeBlock: FC<Props> = memo(({ language, value }) => {
     const fileExtension = programmingLanguages[language] || ".file";
     const suggestedFileName = `file-${generateRandomString(
       3,
-      true,
+      true
     )}${fileExtension}`;
     const fileName = window.prompt("Enter file name" || "", suggestedFileName);
 
@@ -93,19 +93,19 @@ const CodeBlock: FC<Props> = memo(({ language, value }) => {
   };
 
   return (
-    <div className="codeblock relative w-full bg-zinc-950 font-sans">
-      <div className="flex w-full items-center justify-between bg-zinc-800 px-6 py-2 pr-4 text-zinc-100">
+    <div className="codeblock relative w-full rounded-xl bg-zinc-950 font-sans">
+      <div className="flex w-full items-center justify-between rounded-xl bg-zinc-800 px-6 py-2 pr-4 text-zinc-100">
         <span className="text-xs lowercase">{language}</span>
         <div className="flex items-center space-x-1">
           <Button variant="ghost" onClick={downloadAsFile} size="icon">
-            <Download />
+            <DownloadIcon />
             <span className="sr-only">Download</span>
           </Button>
           <Button variant="ghost" size="icon" onClick={onCopy}>
             {isCopied ? (
-              <Check className="h-4 w-4" />
+              <CheckIcon className="h-4 w-4" />
             ) : (
-              <Copy className="h-4 w-4" />
+              <CopyIcon className="h-4 w-4" />
             )}
             <span className="sr-only">Copy code</span>
           </Button>
@@ -121,12 +121,16 @@ const CodeBlock: FC<Props> = memo(({ language, value }) => {
           background: "transparent",
           padding: "1.5rem 1rem",
           borderRadius: "0.5rem",
+          margin: 0
+        }}
+        lineNumberStyle={{
+          userSelect: "none"
         }}
         codeTagProps={{
           style: {
             fontSize: "0.9rem",
-            fontFamily: "var(--font-mono)",
-          },
+            fontFamily: "var(--font-mono)"
+          }
         }}
       >
         {value}
