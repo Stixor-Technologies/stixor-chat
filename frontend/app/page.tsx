@@ -13,7 +13,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      <div className="relative flex h-screen overflow-hidden">
+      <div className="relative flex h-[100dvh] overflow-hidden">
         <ChatSection />
       </div>
     </>

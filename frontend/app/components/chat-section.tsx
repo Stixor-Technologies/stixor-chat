@@ -33,10 +33,7 @@ export default function ChatSection() {
     useScrollAnchor();
 
   return (
-    <div
-      className="w-full overflow-auto pl-0 peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]"
-      ref={scrollRef}
-    >
+    <div className="w-full overflow-auto pl-0" ref={scrollRef}>
       <div className="pb-40 pt-16 md:pt-20" ref={messagesRef}>
         {transformedMessages.length > 0 ? (
           <ChatMessages

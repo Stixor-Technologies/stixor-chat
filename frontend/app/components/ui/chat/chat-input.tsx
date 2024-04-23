@@ -116,7 +116,7 @@ export default function ChatInput(
 
       <form
         onSubmit={onSubmit}
-        className="fixed bottom-2 left-1/2 w-screen max-w-3xl -translate-x-1/2 space-y-4 rounded-full bg-white p-4 shadow-xl md:bottom-10 
+        className="fixed bottom-2 left-1/2 w-[95vw] max-w-3xl -translate-x-1/2 space-y-4 rounded-full bg-white p-4 shadow-xl md:bottom-10 
         md:w-2/3"
       >
         {imageUrl && (
