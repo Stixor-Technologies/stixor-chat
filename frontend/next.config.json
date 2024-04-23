@@ -1,12 +1,9 @@
 {
   "experimental": {
     "outputFileTracingIncludes": {
-      "/*": [
-        "./cache/**/*"
-      ]
+      "/*": ["./cache/**/*"]
     }
   },
-  "output": "export",
   "images": {
     "unoptimized": true
   }
