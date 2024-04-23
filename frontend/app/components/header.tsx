@@ -2,8 +2,8 @@ import Image from "next/image";
 import StixorLogo from "../../public/stixor-horizontal.png";
 import { Button } from "./ui/button";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import SignOutButton from "./ui/sign-out-button";
+import { authOptions } from "@/auth";
 
 export default async function Header() {
   const session = await getServerSession(authOptions);
