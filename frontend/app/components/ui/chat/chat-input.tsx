@@ -104,8 +104,10 @@ export default function ChatInput(
                     props.append({ content: example.message, role: "user" });
                   }}
                 >
-                  <div className="text-sm font-semibold">{example.heading}</div>
-                  <div className="text-sm text-zinc-600">
+                  <div className="text-base font-semibold">
+                    {example.heading}
+                  </div>
+                  <div className="text-base text-zinc-600">
                     {example.subheading}
                   </div>
                 </div>

@@ -9,14 +9,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routers.chat import chat_router
 from app.settings import init_settings
-
+from app.engine.generate import generate_datasource
 
 app = FastAPI()
 
 init_settings()
+generate_datasource()
 
 environment = os.getenv("ENVIRONMENT", "dev")  # Default to 'development' if not set
-
 
 if environment == "dev":
     logger = logging.getLogger("uvicorn")
@@ -30,7 +30,6 @@ if environment == "dev":
     )
 
 app.include_router(chat_router, prefix="/api/chat")
-
 
 if __name__ == "__main__":
     app_host = os.getenv("APP_HOST", "0.0.0.0")

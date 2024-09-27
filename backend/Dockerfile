@@ -40,4 +40,8 @@ FROM python-base as production
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 COPY . .
 
-CMD ["python", "main.py"]
+# Set the environment variable to point to your FastAPI app
+ENV APP_MODULE=main:app
+
+# Use the default entrypoint provided by the base image
+CMD ["uvicorn", "main:app"]
