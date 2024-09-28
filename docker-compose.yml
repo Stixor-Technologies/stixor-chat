@@ -1,9 +1,13 @@
 version: "3.2"
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      args:
+        - APP_PORT=${APP_PORT}
+        - APP_HOST=${APP_HOST}
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - "${APP_PORT}:${APP_PORT}"
     depends_on:
       postgres:
         condition: service_healthy

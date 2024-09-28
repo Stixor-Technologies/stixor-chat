@@ -1,47 +1,50 @@
 ###############################################
 # Base Image
 ###############################################
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.11 as python-base
+FROM python:3.12.4 as requirements-stage
 
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PIP_NO_CACHE_DIR=off \
-    PIP_DISABLE_PIP_VERSION_CHECK=on \
-    PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.1.13 \
-    POETRY_HOME="/opt/poetry" \
-    POETRY_VIRTUALENVS_IN_PROJECT=true \
-    POETRY_NO_INTERACTION=1 \
-    PYSETUP_PATH="/opt/pysetup" \
-    VENV_PATH="/opt/pysetup/.venv"
+# Define build arguments (these are for the build-time context)
+ARG APP_HOST
+ARG APP_PORT
 
-# prepend poetry and venv to path
-ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
+# Set environment variables for the build stage
+ENV APP_HOST=${APP_HOST}
+ENV APP_PORT=${APP_PORT}
 
-###############################################
-# Builder Image
-###############################################
-FROM python-base as builder-base
+# Set the working directory
+WORKDIR /tmp
 
-# install poetry - respects $POETRY_VERSION & $POETRY_HOME
-RUN curl -sSL https://install.python-poetry.org | python3 -
+# Install Poetry
+RUN pip install poetry
 
-# copy project requirement files here to ensure they will be cached.
-WORKDIR $PYSETUP_PATH
-COPY pyproject.toml ./
+# Copy dependency files
+COPY ./pyproject.toml ./poetry.lock* /tmp/
 
-# install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install --no-dev
+# Export requirements to a requirements.txt file
+RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 ###############################################
-# Production Image
+# Application Image
 ###############################################
-FROM python-base as production
-COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
-COPY . .
+FROM python:3.12.4
 
-# Set the environment variable to point to your FastAPI app
-ENV APP_MODULE=main:app
+# Set the working directory
+WORKDIR /code
 
-# Use the default entrypoint provided by the base image
-CMD ["uvicorn", "main:app"]
+# Set PYTHONPATH to include the /code directory
+ENV PYTHONPATH=/code
+
+# Copy the requirements file and install dependencies
+COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+# Copy the application code
+COPY ./app /code/app
+
+# Set environment variables for runtime (These will be overridden by docker-compose)
+ENV APP_HOST=${APP_HOST}
+ENV APP_PORT=${APP_PORT}
+
+# Use uvicorn to run the FastAPI application
+CMD ["sh", "-c", "uvicorn app.main:app --host $APP_HOST --port $APP_PORT "]

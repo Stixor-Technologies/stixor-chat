@@ -3,12 +3,12 @@
 name = "app"
 version = "0.1.0"
 description = ""
-authors = [ "Marcus Schiesser <mail@marcusschiesser.de>" ]
+authors = ["Sanan bin Tahir <sananbintahir@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11,<3.12"
-fastapi = "^0.109.1"
+python = "^3.11"
+fastapi = "^0.111.0"
 python-dotenv = "^1.0.0"
 llama-index = "0.10.15"
 llama-index-core = "0.10.15"
@@ -23,9 +23,6 @@ version = "^0.23.2"
 
 [tool.poetry.dependencies.llama-index-vector-stores-postgres]
 version = "^0.1.1"
-
-[tool.poetry.dependencies.llama-index-vector-stores-pinecone]
-version = "^0.1.3"
 
 [tool.poetry.dependencies.docx2txt]
 version = "^0.8"
